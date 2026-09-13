@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GD Demonlist</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #da3737;
+        }
+        .list-item {
+            background-color: #222;
+            margin: 15px 0;
+            padding: 15px;
+            border-left: 5px solid #da3737;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .level-info h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.3rem;
+        }
+        .level-info p {
+            margin: 0;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        .video-btn {
+            background-color: #da3737;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        .video-btn:hover {
+            background-color: #ff4a4a;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="container">
+        <h1>Official Demonlist</h1>
+        <div id="demon-list"></div>
+    </div>
+
+    <script>
+        // --- DEFINE YOUR DEMON LIST DATA HERE ---
+        const demonData = [
+            {
+                rank: 1,
+                name: "Tidal Wave",
+                creator: "OniLink",
+                verifier: "Trick",
+                videoUrl: "https://www.youtube.com"
+            },
+            {
+                rank: 2,
+                name: "Acheron",
+                creator: "Riot & More",
+                verifier: "Zoink",
+                videoUrl: "https://www.youtube.com"
+            },
+            {
+                rank: 3,
+                name: "Silent Clubstep",
+                creator: "Sailent",
+                verifier: "Paqeo",
+                videoUrl: "https://www.youtube.com"
+            }
+        ];
+
+        // --- CODE TO AUTOMATICALLY RENDER THE LIST ---
+        const listContainer = document.getElementById('demon-list');
+        
+        demonData.forEach(level => {
+            const itemHTML = `
+                <div class="list-item">
+                    <div class="level-info">
+                        <h2>#${level.rank} - ${level.name}</h2>
+                        <p>Created by: <strong>${level.creator}</strong> | Verified by: <strong>${level.verifier}</strong></p>
+                    </div>
+                    <a href="${level.videoUrl}" target="_blank" class="video-btn">Watch Video</a>
+                </div>
+            `;
+            listContainer.innerHTML += itemHTML;
+        });
+    </script>
+</body>
+</html>
