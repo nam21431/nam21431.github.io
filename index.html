@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GD Demonlist</title>
+    <title>GD Demonlist & Leaderboard</title>
     <style>
         body {
             background: linear-gradient(135deg, #eef2f7 0%, #dfe6e9 100%);
@@ -20,11 +20,31 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         header h1 {
-            margin: 0;
+            margin: 0 0 15px 0;
             color: #000000;
             font-size: 2.8rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .nav-btn {
+            background-color: #f1f2f6;
+            border: 1px solid #dcdde1;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .nav-btn.active, .nav-btn:hover {
+            background-color: #4a90e2;
+            color: #ffffff;
+            border-color: #4a90e2;
         }
         .main-layout {
             display: flex;
@@ -68,7 +88,7 @@
         }
         .list-item p {
             margin: 0;
-            color: #000000;
+            color: #555555;
             font-size: 1rem;
         }
         .content-panel {
@@ -105,6 +125,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 5px;
+            color: #666;
         }
         .meta-box span {
             font-size: 1.2rem;
@@ -145,59 +166,77 @@
             border: 1px solid #dcdde1;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 1.15rem;
             color: #000000;
-            transition: background-color 0.2s;
-        }
-        .record-row:hover {
-            background-color: #f1f2f6;
         }
         .record-row span.percentage {
-            color: #000000;
+            color: #ffffff;
             background-color: #2ecc71;
             padding: 4px 12px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 1rem;
         }
-        .info-widget {
-            flex: 0.8;
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 25px;
-            height: fit-content;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            border: 1px solid #dcdde1;
+        /* Leaderboard Specific Styles */
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
-        .info-widget h3 {
-            margin-top: 0;
-            font-size: 1.3rem;
-            border-bottom: 2px solid #4a90e2;
-            padding-bottom: 8px;
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e1e4e8;
         }
-        .info-widget p {
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .leaderboard-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #555;
         }
+        .leaderboard-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        .rank-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            color: white;
+            background-color: #7f8c8d;
+        }
+        .rank-1 { background-color: #f1c40f; }
+        .rank-2 { background-color: #bdc3c7; }
+        .rank-3 { background-color: #e67e22; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>mrroller level list</h1>
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchView('levels')">Level List</button>
+            <button class="nav-btn" onclick="switchView('leaderboard')">Leaderboard</button>
+        </div>
     </header>
 
-    <div class="main-layout">
-        <!-- Sidebar containing level names -->
+    <div class="main-layout" id="layout-container">
+        <!-- Sidebar containing level names (dynamically rendered) -->
         <div class="sidebar" id="sidebar-list"></div>
 
-        <!-- Main panel displaying clicked level info -->
+        <!-- Main panel displaying clicked level info or leaderboard -->
         <div class="content-panel" id="detail-panel">
             <p style="font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
         </div>
+    </div>
 
     <script>
-        // --- LEVEL AND RECORD DATA SOURCE ---
+        // --- LEVEL AND LEADERBOARD DATA SOURCE ---
         const demonData = [
             {
                 rank: 1,
@@ -207,7 +246,7 @@
                 verifier: "mrroller",
                 videoUrl: "https://youtube.com",
                 records: [
-                    { player: "None", percentage: "0%" }
+                    { player: "mrroller", percentage: "100%" }
                 ]
             },
             {
@@ -234,8 +273,32 @@
             }
         ];
 
+        // Example Leaderboard Data (Calculated points or standalone stats)
+        const leaderboardData = [
+            { rank: 1, player: "mrroller", demonsCompleted: 1, score: 150 },
+            { player: "PlayerTwo", demonsCompleted: 0, score: 0 },
+        ];
+
+        let currentView = 'levels';
+
         const sidebar = document.getElementById('sidebar-list');
         const detailPanel = document.getElementById('detail-panel');
+
+        function switchView(view) {
+            currentView = view;
+            
+            // Update button states
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if(view === 'levels') {
+                event.target.classList.add('active');
+                sidebar.style.display = 'block';
+                initSidebar();
+            } else {
+                event.target.classList.add('active');
+                sidebar.style.display = 'none';
+                showLeaderboard();
+            }
+        }
 
         // Render Sidebar Menu
         function initSidebar() {
@@ -257,6 +320,7 @@
 
         // Render Main View details dynamically
         function showLevelDetails(level) {
+            if(currentView !== 'levels') return;
             let recordsHTML = '';
             if(level.records && level.records.length > 0) {
                 level.records.forEach(rec => {
@@ -294,6 +358,44 @@
                     <h3>Progress Records</h3>
                     ${recordsHTML}
                 </div>
+            `;
+        }
+
+        // Render Leaderboard View
+        function showLeaderboard() {
+            // Sort leaderboard by score descending
+            leaderboardData.sort((a, b) => b.score - a.score);
+
+            let rowsHTML = '';
+            leaderboardData.forEach((entry, index) => {
+                const rankNum = index + 1;
+                const badgeClass = rankNum <= 3 ? `rank-badge rank-${rankNum}` : `rank-badge`;
+                rowsHTML += `
+                    <tr>
+                        <td><span class="${badgeClass}">${rankNum}</span></td>
+                        <td><strong>${entry.player}</strong></td>
+                        <td>${entry.demonsCompleted}</td>
+                        <td><strong>${entry.score} pts</strong></td>
+                    </tr>
+                `;
+            });
+
+            detailPanel.style.flex = "1"; // Expand content panel when sidebar is hidden
+            detailPanel.innerHTML = `
+                <h2 class="level-title">Leaderboard</h2>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Demons Completed</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rowsHTML}
+                    </tbody>
+                </table>
             `;
         }
 
