@@ -188,23 +188,29 @@
     </header>
 
     <div class="main-layout">
+        <!-- Sidebar containing level names -->
         <div class="sidebar" id="sidebar-list"></div>
+
+        <!-- Main panel displaying clicked level info -->
         <div class="content-panel" id="detail-panel">
             <p style="font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
         </div>
+
+        <!-- Right Sidebar Info Widget -->
         <div class="info-widget">
             <h3>List Statistics</h3>
             <p>Welcome to the official progression tracker. Navigate through our active difficulty tier slots on the left menu pane.</p>
-            <p><strong>Total Levels:</strong> 1</p>
+            <p><strong>Total Levels:</strong> 3</p>
             <p><strong>Top Player:</strong> socvinhtien</p>
         </div>
     </div>
 
     <script>
+        // --- LEVEL AND RECORD DATA SOURCE ---
         const demonData = [
             {
                 rank: 1,
-                name: "Stereo Madness",
+                name: "Stereo Madnesse",
                 id: "None",
                 creator: "Robtop",
                 verifier: "mrroller",
@@ -212,7 +218,7 @@
                 records: [
                     { player: "socvinhtien", percentage: "100%" }
                 ]
-            }
+            },
             {
                 rank: 2,
                 name: "Back On Track",
@@ -221,7 +227,18 @@
                 verifier: "mrroller",
                 videoUrl: "https://youtube.com",
                 records: [
-                    { player: "John", percentage: "100%" }
+                    { player: "PlayerTwo", percentage: "100%" }
+                ]
+            },
+            {
+                rank: 3,
+                name: "Polargeist",
+                id: "None",
+                creator: "Robtop",
+                verifier: "mrroller",
+                videoUrl: "https://youtube.com",
+                records: [
+                    { player: "PlayerThree", percentage: "85%" }
                 ]
             }
         ];
@@ -229,8 +246,9 @@
         const sidebar = document.getElementById('sidebar-list');
         const detailPanel = document.getElementById('detail-panel');
 
+        // Render Sidebar Menu
         function initSidebar() {
-            sidebar.innerHTML = ''; // Clear prior elements safely
+            sidebar.innerHTML = '';
             demonData.forEach(level => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
@@ -242,9 +260,11 @@
                 sidebar.appendChild(div);
             });
             
+            // Automatically open #1 on first load
             if(demonData.length > 0) showLevelDetails(demonData[0]);
         }
 
+        // Render Main View details dynamically
         function showLevelDetails(level) {
             let recordsHTML = '';
             if(level.records && level.records.length > 0) {
