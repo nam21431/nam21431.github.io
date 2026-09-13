@@ -6,132 +6,181 @@
     <title>GD Demonlist</title>
     <style>
         body {
-            background-color: #f5f5f7; /* Soft light grey background */
+            background: linear-gradient(135deg, #eef2f7 0%, #dfe6e9 100%); /* Elegant gradient background */
             color: #000000; /* Solid black main text */
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cleaner modern font */
             margin: 0;
             padding: 0;
         }
         header {
             background-color: #ffffff; /* Bright white header */
-            padding: 25px;
+            padding: 30px;
             text-align: center;
-            border-bottom: 3px solid #000000; /* Changed underline to solid black */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-bottom: 4px solid #4a90e2; /* Deep modern blue accent underline */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         header h1 {
             margin: 0;
             color: #000000; /* Solid black title header */
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         .main-layout {
             display: flex;
             max-width: 1400px;
-            margin: 30px auto;
-            gap: 30px;
+            margin: 40px auto;
+            gap: 25px;
             padding: 0 20px;
         }
         /* Left sidebar level list */
         .sidebar {
             flex: 1;
-            max-width: 450px;
+            max-width: 400px;
             background-color: #ffffff; /* White background sidebar */
-            border-radius: 8px;
-            padding: 15px;
-            height: 80vh;
+            border-radius: 12px;
+            padding: 20px;
+            height: 75vh;
             overflow-y: auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #dcdde1;
         }
         .list-item {
-            background-color: #fcfcfc; /* Very light tile background */
+            background-color: #f8f9fa; /* Sleek light tile background */
             margin-bottom: 15px;
-            padding: 25px 20px;
-            border-left: 6px solid #000000; /* Solid black side bar accent */
-            border-radius: 6px;
+            padding: 22px 20px;
+            border-left: 6px solid #4a90e2; /* Elegant blue sidebar accent */
+            border-radius: 8px;
             cursor: pointer;
-            border-top: 1px solid #eee;
-            border-right: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            transition: background 0.2s, transform 0.1s;
+            border-top: 1px solid #eef2f7;
+            border-right: 1px solid #eef2f7;
+            border-bottom: 1px solid #eef2f7;
+            transition: all 0.2s ease;
         }
         .list-item:hover {
-            background-color: #f0f0f2; /* Light grey on hover */
-            transform: scale(1.01);
+            background-color: #ebf3fc; /* Soft blue highlight on hover */
+            transform: translateY(-2px); /* Slight lift animation */
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.15);
         }
         .list-item h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.5rem;
+            margin: 0 0 6px 0;
+            font-size: 1.4rem;
             color: #000000; /* Solid black level heading */
         }
         .list-item p {
             margin: 0;
             color: #000000; /* Solid black descriptions */
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
-        /* Right panel details view */
+        /* Middle panel details view */
         .content-panel {
             flex: 2;
             background-color: #ffffff; /* White profile card background */
-            border-radius: 8px;
-            padding: 35px;
+            border-radius: 12px;
+            padding: 40px;
             height: fit-content;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #dcdde1;
         }
         .level-title {
             color: #000000; /* Solid black main page title */
             margin-top: 0;
-            font-size: 2.8rem;
+            font-size: 3rem;
+            border-bottom: 2px solid #f1f2f6;
+            padding-bottom: 10px;
         }
-        .meta-info {
-            color: #000000; /* Solid black details text */
+        .meta-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .meta-box {
+            background-color: #f1f2f6; /* Decorative light gray background cards for stats */
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e4e7eb;
+        }
+        .meta-box strong {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .meta-box span {
             font-size: 1.2rem;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eeeeee;
-            padding-bottom: 20px;
-            line-height: 1.8;
-        }
-        /* Style for the level ID text highlight */
-        .level-id {
-            color: #000000; /* Solid black ID */
             font-weight: bold;
         }
         .video-container {
-            margin: 30px 0;
+            margin: 35px 0;
             text-align: center;
         }
         .video-btn {
             display: inline-block;
-            background-color: #000000; /* Changed button to match clean black theme */
-            color: #ffffff; /* White button text */
+            background: linear-gradient(135deg, #2f3640 0%, #000000 100%); /* Striking black gradient button */
+            color: #ffffff; /* White button text for visibility on dark button */
             text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 6px;
+            padding: 16px 40px;
+            border-radius: 30px; /* Smooth rounded pill shape */
             font-weight: bold;
             font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
         }
         .video-btn:hover {
-            background-color: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         .records-section h3 {
-            border-bottom: 2px solid #000000;
+            border-bottom: 3px solid #2ecc71; /* Accent green line for records section */
             padding-bottom: 8px;
             color: #000000; /* Solid black subheaders */
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            margin-top: 40px;
         }
         .record-row {
-            background-color: #f7f7f9; /* Soft card row for players */
-            padding: 15px 20px;
-            margin: 8px 0;
-            border-radius: 6px;
-            border: 1px solid #e1e4e8;
+            background-color: #f5f6fa; /* Clean light gray row */
+            padding: 18px 25px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #dcdde1;
             display: flex;
             justify-content: space-between;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #000000; /* Solid black player record name */
+            transition: background-color 0.2s;
+        }
+        .record-row:hover {
+            background-color: #f1f2f6;
         }
         .record-row span.percentage {
-            color: #28a745; /* Clean green text for completion metric so it stands out */
+            color: #000000; /* Changed percentage text to solid black as requested */
+            background-color: #2ecc71; /* Added a beautiful bright green capsule background instead! */
+            padding: 4px 12px;
+            border-radius: 20px;
             font-weight: bold;
+            font-size: 1rem;
+        }
+        /* Right sidebar Info Widget */
+        .info-widget {
+            flex: 0.8;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            height: fit-content;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #dcdde1;
+        }
+        .info-widget h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 8px;
+        }
+        .info-widget p {
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -147,7 +196,15 @@
 
         <!-- Main panel displaying clicked level info -->
         <div class="content-panel" id="detail-panel">
-            <p style="color: #000000; font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
+            <p style="font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
+        </div>
+
+        <!-- New Decorative Right Widget Pane -->
+        <div class="info-widget">
+            <h3>List Statistics</h3>
+            <p>Welcome to the official progression tracker. Navigate through our active difficulty tier slots on the left menu pane.</p>
+            <p><strong>Total Levels:</strong> 1</p>
+            <p><strong>Top Player:</strong> socvinhtien</p>
         </div>
     </div>
 
@@ -200,27 +257,23 @@
                     `;
                 });
             } else {
-                recordsHTML = '<p style="color: #000000;">No records established yet.</p>';
+                recordsHTML = '<p>No records established yet.</p>';
             }
 
             detailPanel.innerHTML = `
                 <h2 class="level-title">${level.name}</h2>
-                <div class="meta-info">
-                    <p><strong>Level ID:</strong> <span class="level-id">${level.id}</span></p>
-                    <p><strong>Creator:</strong> ${level.creator}</p>
-                    <p><strong>Verifier:</strong> ${level.verifier}</p>
+                <div class="meta-container">
+                    <div class="meta-box">
+                        <strong>Level ID</strong>
+                        <span>${level.id}</span>
+                    </div>
+                    <div class="meta-box">
+                        <strong>Creator</strong>
+                        <span>${level.creator}</span>
+                    </div>
+                    <div class="meta-box">
+                        <strong>Verifier</strong>
+                        <span>${level.verifier}</span>
+                    </div>
                 </div>
                 <div class="video-container">
-                    <a href="${level.videoUrl}" target="_blank" class="video-btn">Watch Verification Video</a>
-                </div>
-                <div class="records-section">
-                    <h3>Progress Records</h3>
-                    ${recordsHTML}
-                </div>
-            `;
-        }
-
-        initSidebar();
-    </script>
-</body>
-</html>
