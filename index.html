@@ -7,7 +7,7 @@
     <style>
         body {
             background-color: #f5f5f7; /* Soft light grey background */
-            color: #111111; /* Clean black main text */
+            color: #000000; /* Solid black main text */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -16,12 +16,12 @@
             background-color: #ffffff; /* Bright white header */
             padding: 25px;
             text-align: center;
-            border-bottom: 3px solid #da3737; /* Keeps your signature red underline */
+            border-bottom: 3px solid #000000; /* Changed underline to solid black */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         header h1 {
             margin: 0;
-            color: #da3737;
+            color: #000000; /* Solid black title header */
             font-size: 2.5rem;
         }
         .main-layout {
@@ -46,7 +46,7 @@
             background-color: #fcfcfc; /* Very light tile background */
             margin-bottom: 15px;
             padding: 25px 20px;
-            border-left: 6px solid #da3737;
+            border-left: 6px solid #000000; /* Solid black side bar accent */
             border-radius: 6px;
             cursor: pointer;
             border-top: 1px solid #eee;
@@ -61,11 +61,11 @@
         .list-item h3 {
             margin: 0 0 8px 0;
             font-size: 1.5rem;
-            color: #111111; /* Black heading */
+            color: #000000; /* Solid black level heading */
         }
         .list-item p {
             margin: 0;
-            color: #555555; /* Medium grey for descriptions */
+            color: #000000; /* Solid black descriptions */
             font-size: 1.05rem;
         }
         /* Right panel details view */
@@ -78,12 +78,12 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         .level-title {
-            color: #da3737;
+            color: #000000; /* Solid black main page title */
             margin-top: 0;
             font-size: 2.8rem;
         }
         .meta-info {
-            color: #333333; /* Dark grey secondary details */
+            color: #000000; /* Solid black details text */
             font-size: 1.2rem;
             margin-bottom: 25px;
             border-bottom: 1px solid #eeeeee;
@@ -92,7 +92,7 @@
         }
         /* Style for the level ID text highlight */
         .level-id {
-            color: #0066cc; /* Vibrant blue for contrast against white */
+            color: #000000; /* Solid black ID */
             font-weight: bold;
         }
         .video-container {
@@ -101,8 +101,8 @@
         }
         .video-btn {
             display: inline-block;
-            background-color: #da3737;
-            color: white;
+            background-color: #000000; /* Changed button to match clean black theme */
+            color: #ffffff; /* White button text */
             text-decoration: none;
             padding: 15px 35px;
             border-radius: 6px;
@@ -110,12 +110,12 @@
             font-size: 1.1rem;
         }
         .video-btn:hover {
-            background-color: #ff4a4a;
+            background-color: #333333;
         }
         .records-section h3 {
-            border-bottom: 2px solid #da3737;
+            border-bottom: 2px solid #000000;
             padding-bottom: 8px;
-            color: #da3737;
+            color: #000000; /* Solid black subheaders */
             font-size: 1.4rem;
         }
         .record-row {
@@ -127,9 +127,10 @@
             display: flex;
             justify-content: space-between;
             font-size: 1.1rem;
+            color: #000000; /* Solid black player record name */
         }
         .record-row span.percentage {
-            color: #28a745; /* Clean green text for completion metric */
+            color: #28a745; /* Clean green text for completion metric so it stands out */
             font-weight: bold;
         }
     </style>
@@ -146,7 +147,7 @@
 
         <!-- Main panel displaying clicked level info -->
         <div class="content-panel" id="detail-panel">
-            <p style="color: #666666; font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
+            <p style="color: #000000; font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
         </div>
     </div>
 
@@ -199,7 +200,7 @@
                     `;
                 });
             } else {
-                recordsHTML = '<p style="color: #666666;">No records established yet.</p>';
+                recordsHTML = '<p style="color: #000000;">No records established yet.</p>';
             }
 
             detailPanel.innerHTML = `
