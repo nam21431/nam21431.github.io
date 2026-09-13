@@ -6,17 +6,18 @@
     <title>GD Demonlist</title>
     <style>
         body {
-            background-color: #111;
-            color: #fff;
+            background-color: #f5f5f7; /* Soft light grey background */
+            color: #111111; /* Clean black main text */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #1a1a1a;
+            background-color: #ffffff; /* Bright white header */
             padding: 25px;
             text-align: center;
-            border-bottom: 3px solid #da3737;
+            border-bottom: 3px solid #da3737; /* Keeps your signature red underline */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         header h1 {
             margin: 0;
@@ -34,42 +35,47 @@
         .sidebar {
             flex: 1;
             max-width: 450px;
-            background-color: #1a1a1a;
+            background-color: #ffffff; /* White background sidebar */
             border-radius: 8px;
             padding: 15px;
             height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         .list-item {
-            background-color: #252525;
+            background-color: #fcfcfc; /* Very light tile background */
             margin-bottom: 15px;
             padding: 25px 20px;
             border-left: 6px solid #da3737;
             border-radius: 6px;
             cursor: pointer;
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
             transition: background 0.2s, transform 0.1s;
         }
         .list-item:hover {
-            background-color: #333;
+            background-color: #f0f0f2; /* Light grey on hover */
             transform: scale(1.01);
         }
         .list-item h3 {
             margin: 0 0 8px 0;
             font-size: 1.5rem;
-            color: #fff;
+            color: #111111; /* Black heading */
         }
         .list-item p {
             margin: 0;
-            color: #bbb;
+            color: #555555; /* Medium grey for descriptions */
             font-size: 1.05rem;
         }
         /* Right panel details view */
         .content-panel {
             flex: 2;
-            background-color: #1a1a1a;
+            background-color: #ffffff; /* White profile card background */
             border-radius: 8px;
             padding: 35px;
             height: fit-content;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         .level-title {
             color: #da3737;
@@ -77,16 +83,16 @@
             font-size: 2.8rem;
         }
         .meta-info {
-            color: #ccc;
+            color: #333333; /* Dark grey secondary details */
             font-size: 1.2rem;
             margin-bottom: 25px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #eeeeee;
             padding-bottom: 20px;
-            line-height: 1.8; /* Adjusted for cleaner reading space */
+            line-height: 1.8;
         }
         /* Style for the level ID text highlight */
         .level-id {
-            color: #58a6ff;
+            color: #0066cc; /* Vibrant blue for contrast against white */
             font-weight: bold;
         }
         .video-container {
@@ -113,16 +119,17 @@
             font-size: 1.4rem;
         }
         .record-row {
-            background-color: #222;
+            background-color: #f7f7f9; /* Soft card row for players */
             padding: 15px 20px;
             margin: 8px 0;
             border-radius: 6px;
+            border: 1px solid #e1e4e8;
             display: flex;
             justify-content: space-between;
             font-size: 1.1rem;
         }
         .record-row span.percentage {
-            color: #28a745;
+            color: #28a745; /* Clean green text for completion metric */
             font-weight: bold;
         }
     </style>
@@ -130,7 +137,7 @@
 <body>
 
     <header>
-        <h1>Official Demonlist</h1>
+        <h1>mrroller level list</h1>
     </header>
 
     <div class="main-layout">
@@ -139,22 +146,22 @@
 
         <!-- Main panel displaying clicked level info -->
         <div class="content-panel" id="detail-panel">
-            <p style="color: #aaa; font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
+            <p style="color: #666666; font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
         </div>
     </div>
 
     <script>
-        // --- LEVEL AND RECORD DATA SOURCE WITH ID ADDED ---
+        // --- LEVEL AND RECORD DATA SOURCE ---
         const demonData = [
             {
                 rank: 1,
                 name: "Stereo Madnesse",
-                id: "None", // <-- Added ID here
+                id: "None",
                 creator: "Robtop",
                 verifier: "mrroller",
                 videoUrl: "https://youtube.com",
                 records: [
-                    { player: "mrroller", percentage: "100%" }
+                    { player: "socvinhtien", percentage: "100%" }
                 ]
             }
         ];
@@ -192,10 +199,9 @@
                     `;
                 });
             } else {
-                recordsHTML = '<p style="color: #aaa;">No records established yet.</p>';
+                recordsHTML = '<p style="color: #666666;">No records established yet.</p>';
             }
 
-            // Added Level ID line into the output template below
             detailPanel.innerHTML = `
                 <h2 class="level-title">${level.name}</h2>
                 <div class="meta-info">
