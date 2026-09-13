@@ -6,22 +6,22 @@
     <title>GD Demonlist</title>
     <style>
         body {
-            background: linear-gradient(135deg, #eef2f7 0%, #dfe6e9 100%); /* Elegant gradient background */
-            color: #000000; /* Solid black main text */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cleaner modern font */
+            background: linear-gradient(135deg, #eef2f7 0%, #dfe6e9 100%);
+            color: #000000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #ffffff; /* Bright white header */
+            background-color: #ffffff;
             padding: 30px;
             text-align: center;
-            border-bottom: 4px solid #4a90e2; /* Deep modern blue accent underline */
+            border-bottom: 4px solid #4a90e2;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         header h1 {
             margin: 0;
-            color: #000000; /* Solid black title header */
+            color: #000000;
             font-size: 2.8rem;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -33,11 +33,10 @@
             gap: 25px;
             padding: 0 20px;
         }
-        /* Left sidebar level list */
         .sidebar {
             flex: 1;
             max-width: 400px;
-            background-color: #ffffff; /* White background sidebar */
+            background-color: #ffffff;
             border-radius: 12px;
             padding: 20px;
             height: 75vh;
@@ -46,10 +45,10 @@
             border: 1px solid #dcdde1;
         }
         .list-item {
-            background-color: #f8f9fa; /* Sleek light tile background */
+            background-color: #f8f9fa;
             margin-bottom: 15px;
             padding: 22px 20px;
-            border-left: 6px solid #4a90e2; /* Elegant blue sidebar accent */
+            border-left: 6px solid #4a90e2;
             border-radius: 8px;
             cursor: pointer;
             border-top: 1px solid #eef2f7;
@@ -58,24 +57,23 @@
             transition: all 0.2s ease;
         }
         .list-item:hover {
-            background-color: #ebf3fc; /* Soft blue highlight on hover */
-            transform: translateY(-2px); /* Slight lift animation */
+            background-color: #ebf3fc;
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(74, 144, 226, 0.15);
         }
         .list-item h3 {
             margin: 0 0 6px 0;
             font-size: 1.4rem;
-            color: #000000; /* Solid black level heading */
+            color: #000000;
         }
         .list-item p {
             margin: 0;
-            color: #000000; /* Solid black descriptions */
+            color: #000000;
             font-size: 1rem;
         }
-        /* Middle panel details view */
         .content-panel {
             flex: 2;
-            background-color: #ffffff; /* White profile card background */
+            background-color: #ffffff;
             border-radius: 12px;
             padding: 40px;
             height: fit-content;
@@ -83,7 +81,7 @@
             border: 1px solid #dcdde1;
         }
         .level-title {
-            color: #000000; /* Solid black main page title */
+            color: #000000;
             margin-top: 0;
             font-size: 3rem;
             border-bottom: 2px solid #f1f2f6;
@@ -96,7 +94,7 @@
             margin-bottom: 30px;
         }
         .meta-box {
-            background-color: #f1f2f6; /* Decorative light gray background cards for stats */
+            background-color: #f1f2f6;
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #e4e7eb;
@@ -118,11 +116,11 @@
         }
         .video-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #2f3640 0%, #000000 100%); /* Striking black gradient button */
-            color: #ffffff; /* White button text for visibility on dark button */
+            background: linear-gradient(135deg, #2f3640 0%, #000000 100%);
+            color: #ffffff;
             text-decoration: none;
             padding: 16px 40px;
-            border-radius: 30px; /* Smooth rounded pill shape */
+            border-radius: 30px;
             font-weight: bold;
             font-size: 1.1rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -133,14 +131,14 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         .records-section h3 {
-            border-bottom: 3px solid #2ecc71; /* Accent green line for records section */
+            border-bottom: 3px solid #2ecc71;
             padding-bottom: 8px;
-            color: #000000; /* Solid black subheaders */
+            color: #000000;
             font-size: 1.5rem;
             margin-top: 40px;
         }
         .record-row {
-            background-color: #f5f6fa; /* Clean light gray row */
+            background-color: #f5f6fa;
             padding: 18px 25px;
             margin: 10px 0;
             border-radius: 8px;
@@ -148,21 +146,20 @@
             display: flex;
             justify-content: space-between;
             font-size: 1.15rem;
-            color: #000000; /* Solid black player record name */
+            color: #000000;
             transition: background-color 0.2s;
         }
         .record-row:hover {
             background-color: #f1f2f6;
         }
         .record-row span.percentage {
-            color: #000000; /* Changed percentage text to solid black as requested */
-            background-color: #2ecc71; /* Added a beautiful bright green capsule background instead! */
+            color: #000000;
+            background-color: #2ecc71;
             padding: 4px 12px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 1rem;
         }
-        /* Right sidebar Info Widget */
         .info-widget {
             flex: 0.8;
             background-color: #ffffff;
@@ -191,15 +188,10 @@
     </header>
 
     <div class="main-layout">
-        <!-- Sidebar containing level names -->
         <div class="sidebar" id="sidebar-list"></div>
-
-        <!-- Main panel displaying clicked level info -->
         <div class="content-panel" id="detail-panel">
             <p style="font-size: 1.2rem;">Select a level from the list to view its details and records.</p>
         </div>
-
-        <!-- New Decorative Right Widget Pane -->
         <div class="info-widget">
             <h3>List Statistics</h3>
             <p>Welcome to the official progression tracker. Navigate through our active difficulty tier slots on the left menu pane.</p>
@@ -209,7 +201,6 @@
     </div>
 
     <script>
-        // --- LEVEL AND RECORD DATA SOURCE ---
         const demonData = [
             {
                 rank: 1,
@@ -227,8 +218,8 @@
         const sidebar = document.getElementById('sidebar-list');
         const detailPanel = document.getElementById('detail-panel');
 
-        // Render Sidebar Menu
         function initSidebar() {
+            sidebar.innerHTML = ''; // Clear prior elements safely
             demonData.forEach(level => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
@@ -240,11 +231,9 @@
                 sidebar.appendChild(div);
             });
             
-            // Automatically open #1 on first load
             if(demonData.length > 0) showLevelDetails(demonData[0]);
         }
 
-        // Render Main View details dynamically
         function showLevelDetails(level) {
             let recordsHTML = '';
             if(level.records && level.records.length > 0) {
@@ -277,3 +266,16 @@
                     </div>
                 </div>
                 <div class="video-container">
+                    <a href="${level.videoUrl}" target="_blank" class="video-btn">Watch Verification Video</a>
+                </div>
+                <div class="records-section">
+                    <h3>Progress Records</h3>
+                    ${recordsHTML}
+                </div>
+            `;
+        }
+
+        initSidebar();
+    </script>
+</body>
+</html>
