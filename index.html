@@ -39,6 +39,8 @@
             font-weight: bold;
             border-radius: 20px;
             cursor: pointer;
+            text-decoration: none;
+            color: #000000;
             transition: all 0.2s ease;
         }
         .nav-btn.active, .nav-btn:hover {
@@ -220,8 +222,9 @@
     <header>
         <h1>mrroller level list</h1>
         <div class="nav-tabs">
-            <button class="nav-btn active" onclick="switchView('levels')">Level List</button>
-            <button class="nav-btn" onclick="switchView('leaderboard')">Leaderboard</button>
+            <button class="nav-btn active" onclick="switchView('levels', event)">Level List</button>
+            <button class="nav-btn" onclick="switchView('leaderboard', event)">Leaderboard</button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3WNoRBkSM9_OFsHjgbAx_xPwkbzTFYUyFQWc_ezmOhDQIyQ/viewform?usp=sharing&ouid=107896432634204610516" target="_blank" class="nav-btn">Submit</a>
         </div>
     </header>
 
@@ -285,7 +288,7 @@
         const sidebar = document.getElementById('sidebar-list');
         const detailPanel = document.getElementById('detail-panel');
 
-        function switchView(view) {
+        function switchView(view, event) {
             currentView = view;
             
             // Update button states
@@ -294,7 +297,7 @@
                 event.target.classList.add('active');
                 sidebar.style.display = 'block';
                 initSidebar();
-            } else {
+            } else if(view === 'leaderboard') {
                 event.target.classList.add('active');
                 sidebar.style.display = 'none';
                 showLeaderboard();
